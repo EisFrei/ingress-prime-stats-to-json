@@ -1,0 +1,6 @@
+{
+	"ALL_TIME": ["GESAMT", "ALL TIME", "OD POCZĄTKU", "DALL'INIZIO", "全部", "Celé období", "ЗА ВСЕ ВРЕМЯ", "SIEMPRE", "ALLE", "TOUS TEMPS"],
+	"MONTH": ["MONAT", "MONTH", "MIESIĄC", "MESE", "月", "Měsíc", "ЗА МЕСЯЦ", "MES", "MAND", "MOIS"],
+	"WEEK": ["WOCHE", "WEEK", "TYDZIEŃ", "SETTIMANA", "周", "Týden", "ЗА НЕДЕЛЮ", "SEMANA", "WEEK", "SEMAINE"],
+	"NOW": ["JETZT", "NOW", "TERAZ", "ORA", "当下", "Nyní", "СЕЙЧАС", "AHORA", "NU", "MAINTENANT"]
+}
