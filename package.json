@@ -1,0 +1,35 @@
+{
+  "name": "ingress-prime-stats-to-json",
+  "version": "0.0.1",
+  "description": "Takes the stats TSV string copied from Ingress Prime and converts it to JSON. Can handle tabs replaced by spaces, throws an exception if an unknown key is found.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EisFrei/ingress-prime-stats-to-json.git"
+  },
+  "keywords": [
+    "ingress",
+    "prime",
+    "tsv",
+    "stats",
+    "profile",
+    "game",
+    "json"
+  ],
+  "author": {
+    "name":"Martin Freisen",
+    "email":"martin.freisen@gmail.com",
+    "url":"https://github.com/EisFrei/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EisFrei/ingress-prime-stats-to-json/issues"
+  },
+  "homepage": "https://github.com/EisFrei/ingress-prime-stats-to-json#readme"
+}
