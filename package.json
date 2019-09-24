@@ -1,6 +1,6 @@
 {
   "name": "ingress-prime-stats-to-json",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Takes the stats TSV string copied from Ingress Prime and converts it to JSON. Can handle tabs replaced by spaces, throws an exception if an unknown key is found.",
   "main": "index.js",
   "directories": {

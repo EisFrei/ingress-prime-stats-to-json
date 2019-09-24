@@ -2,7 +2,7 @@ const keys = require('./keys.json');
 const timespanTranslations = require('./timespan-translations.json');
 
 function trim(str) {
-	return str.replace(/^[\s\t]+/, '').replace(/[\s\t]+$/, '');
+	return str.replace(/^[\s\t\n]+/gm, '').replace(/[\s\t\n]+$/gm, '');
 }
 
 function convertValue(val) {
@@ -34,7 +34,7 @@ Handle both tab (normal) and space (sent using i.e. telegram) separated values
 */
 module.exports = function stringToJSON(str) {
 	const obj = {};
-	const lines = str.split('\n');
+	const lines = trim(str).split('\n');
 	if (lines.length !== 2) {
 		throw new Error('Expect the string to have two lines.');
 	}
