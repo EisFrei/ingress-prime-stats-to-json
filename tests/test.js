@@ -1,10 +1,21 @@
 const fs = require('fs');
 const stringToJSON = require('../index');
 
-const stringWithSpaces = fs.readFileSync('./string-with-spaces.txt','UTF-8');
-const stringWithTabs = fs.readFileSync('./string-with-tabs.txt','UTF-8');
+const expected = fs.readFileSync('./expected.txt','UTF-8');
 
-const resultSpaces = stringToJSON(stringWithSpaces);
-const resultTabs = stringToJSON(stringWithTabs);
-console.log(resultSpaces);
-console.log(resultTabs);
+const files = [
+	'./string-with-spaces.txt',
+	'./string-with-tabs.txt',
+	'./string-with-tabs-extra-newlines.txt',
+];
+
+files.forEach(function(filename){
+	const content = fs.readFileSync(filename,'UTF-8');
+	const result = stringToJSON(content);
+	const stringified = JSON.stringify(result);
+	if (stringified === expected) {
+		console.log('OK', filename);
+	} else {
+		console.log('FAIL', filename);
+	}
+});
