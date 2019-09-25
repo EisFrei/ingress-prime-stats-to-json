@@ -1,4 +1,5 @@
 const keys = require('./keys.json');
+const requiredKeys = require('./required-keys.json');
 const timespanTranslations = require('./timespan-translations.json');
 
 function trim(str) {
@@ -54,6 +55,11 @@ module.exports = function stringToJSON(str) {
 			obj[key] = 0;
 		}
 		headerLine = trim(headerLine.replace(key, ''));
+	});
+	requiredKeys.forEach((key) => {
+		if (!obj.hasOwnProperty(key)) {
+			throw new Error('Missing the required value ' + key);
+		}
 	});
 	return obj;
 };
