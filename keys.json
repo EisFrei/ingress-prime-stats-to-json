@@ -4,6 +4,7 @@
 	"Agent Faction",
 	"Date (yyyy-mm-dd)",
 	"Time (hh:mm:ss)",
+	"Level",
 	"Lifetime AP",
 	"Current AP",
 	"Unique Portals Visited",
