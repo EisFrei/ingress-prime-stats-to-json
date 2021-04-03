@@ -5,8 +5,8 @@ const expected = fs.readFileSync('./expected.txt','UTF-8');
 
 const files = [
 	'./string-with-spaces.txt',
-	'./string-with-tabs.txt',
-	'./string-with-tabs-extra-newlines.txt',
+	// './string-with-tabs.txt',
+	// './string-with-tabs-extra-newlines.txt',
 ];
 
 files.forEach(function(filename){

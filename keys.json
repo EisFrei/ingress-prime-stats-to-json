@@ -48,7 +48,6 @@
 	"Kinetic Capsules Completed",
 	"Unique Missions Completed",
 	"Agents Successfully Recruited",
-	"Agents Recruited",
 	"Mission Day(s) Attended",
 	"NL-1331 Meetup(s) Attended",
 	"First Saturday Events",
@@ -60,6 +59,7 @@
 	"Didact: Total Fields Created",
 	"Didact Fields Created",
 	"Kinetic Capsules Completed",
+	"Agents Recruited",
 	"Recursions",
 	"Months Subscribed"
 ]
