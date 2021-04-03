@@ -44,10 +44,10 @@ module.exports = function stringToJSON(str) {
 	const values = valueLine.split(/[\s\t]/).map(convertValue);
 	let keyIdx = 0;
 
-	keys.forEach((key, idx) => {
+	keys.forEach((key) => {
 		const keyPosition = headerLine.indexOf(key);
 		if (keyPosition > 0) {
-			throw new Error(`Key "${key}" at line ${idx} should be missing or at beginning. Maybe an unknown key was added?\n${headerLine}`);
+			throw new Error(`Key "${key}" at position ${keyPosition} should be missing or at beginning. Maybe an unknown key was added?\n${headerLine}`);
 		}
 		if (keyPosition === 0) { // key is at start. best case. no values needed to skip
 			obj[key] = values[keyIdx++];
