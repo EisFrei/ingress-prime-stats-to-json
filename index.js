@@ -24,7 +24,7 @@ function tempTimeSpan(str) {
 	const targets = Object.keys(timespanTranslations);
 	targets.forEach(function (target) {
 		timespanTranslations[target].forEach(function (translation) {
-			str = str.replace(translation, target);
+			str = str.replace(`${translation} `, `${target} `);
 		});
 	});
 	return str;
