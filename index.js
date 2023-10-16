@@ -31,26 +31,40 @@ function tempTimeSpan(str) {
 	return str;
 }
 
+function hackEncode(str) {
+	return str.replace('Discoverie: Kinetic Capsules', 'Discovery: Kinetic Capsules');
+}
+
+function hackDecode(str) {
+	return str.replace('Discovery: Kinetic Capsules', 'Discoverie: Kinetic Capsules');
+}
+
 /*
 Handle both tab (normal) and space (sent using i.e. telegram) separated values
 */
 module.exports = function stringToJSON(str) {
 	const obj = {};
+	str = hackEncode(str);
 	const lines = trim(str).split('\n');
 	if (lines.length !== 2) {
 		throw new Error('Expect the string to have two lines.');
 	}
 	let headerLine = trim(lines[0]);
 	const valueLine = tempTimeSpan(trim(lines[1]));
-	const containsTab = str.indexOf("\t");
+	const containsTab = str.indexOf("\t") !== -1;
 	if (containsTab) {
 		const headerElements = headerLine.split("\t");
 		const valueElements = valueLine.split("\t");
+		if (headerElements.length < requiredKeys.length) {
+			throw new Error(`Not enough keys in header found – ${headerElements.length} < (${valueElements.length}`);
+		}
+
 		if (headerElements.length !== valueElements.length) {
 			throw new Error(`Difference between header (${headerElements.length}) and value (${valueElements.length}) element counts`);
 		}
+
 		for (let i = 0; i < headerElements.length; i++) {
-			obj[headerElements[i]] = convertValue(valueElements[i]);
+			obj[hackDecode(headerElements[i])] = convertValue(valueElements[i]);
 		}
 	} else {
 		const values = valueLine.split(/[\s\t]/).map(convertValue);
@@ -62,9 +76,9 @@ module.exports = function stringToJSON(str) {
 				throw new Error(`Key "${key}" at position ${keyPosition} should be missing or at beginning. Maybe an unknown key was added?\n${headerLine}`);
 			}
 			if (keyPosition === 0) { // key is at start. best case. no values needed to skip
-				obj[key] = values[keyIdx++];
+				obj[hackDecode(key)] = values[keyIdx++];
 			} else if (keyPosition === -1) { // key was not found. agent might be missing this stat
-				obj[key] = 0;
+				obj[hackDecode(key)] = 0;
 			}
 			headerLine = trim(headerLine.replace(key, ''));
 		});
