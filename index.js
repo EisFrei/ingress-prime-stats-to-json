@@ -71,7 +71,7 @@ module.exports = function stringToJSON(str) {
 	}
 	requiredKeys.forEach((key) => {
 		if (!obj.hasOwnProperty(key)) {
-			throw new Error('Missing the required value ' + key);
+			throw new Error(`Missing the required value ${key} – ${JSON.stringify(obj)}`);
 		}
 	});
 	return obj;
