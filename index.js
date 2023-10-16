@@ -50,7 +50,7 @@ module.exports = function stringToJSON(str) {
 			throw new Error(`Difference between header (${headerElements.length}) and value (${valueElements.length}) element counts`);
 		}
 		for (let i = 0; i < headerElements.length; i++) {
-			obj[headerElements[i]] = valueElements[i];
+			obj[headerElements[i]] = convertValue(valueElements[i]);
 		}
 	} else {
 		const values = valueLine.split(/[\s\t]/).map(convertValue);
