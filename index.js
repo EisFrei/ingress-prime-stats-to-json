@@ -31,12 +31,16 @@ function tempTimeSpan(str) {
 	return str;
 }
 
-function hackEncode(str) {
-	return str.replace('Discoverie: Kinetic Capsules', 'Discovery: Kinetic Capsules');
+function hackyEncode(str) {
+	return str
+		.replace('Discoverie: Kinetic Capsules', 'Discovery: Kinetic Capsules')
+		.replace('Discoverie: Machina Reclaims', 'Discovery: Machina Reclaims');
 }
 
-function hackDecode(str) {
-	return str.replace('Discovery: Kinetic Capsules', 'Discoverie: Kinetic Capsules');
+function hackyDecode(str) {
+	return str
+		.replace('Discovery: Kinetic Capsules', 'Discoverie: Kinetic Capsules')
+		.replace('Discovery: Machina Reclaims', 'Discoverie: Machina Reclaims');
 }
 
 /*
@@ -44,7 +48,7 @@ Handle both tab (normal) and space (sent using i.e. telegram) separated values
 */
 module.exports = function stringToJSON(str) {
 	const obj = {};
-	str = hackEncode(str);
+	str = hackyEncode(str);
 	const lines = trim(str).split('\n');
 	if (lines.length !== 2) {
 		throw new Error('Expect the string to have two lines.');
@@ -64,7 +68,7 @@ module.exports = function stringToJSON(str) {
 		}
 
 		for (let i = 0; i < headerElements.length; i++) {
-			obj[hackDecode(headerElements[i])] = convertValue(valueElements[i]);
+			obj[hackyDecode(headerElements[i])] = convertValue(valueElements[i]);
 		}
 	} else {
 		const values = valueLine.split(/[\s\t]/).map(convertValue);
@@ -76,9 +80,9 @@ module.exports = function stringToJSON(str) {
 				throw new Error(`Key "${key}" at position ${keyPosition} should be missing or at beginning. Maybe an unknown key was added?\n${headerLine}`);
 			}
 			if (keyPosition === 0) { // key is at start. best case. no values needed to skip
-				obj[hackDecode(key)] = values[keyIdx++];
+				obj[hackyDecode(key)] = values[keyIdx++];
 			} else if (keyPosition === -1) { // key was not found. agent might be missing this stat
-				obj[hackDecode(key)] = 0;
+				obj[hackyDecode(key)] = 0;
 			}
 			headerLine = trim(headerLine.replace(key, ''));
 		});
