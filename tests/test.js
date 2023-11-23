@@ -4,8 +4,8 @@ const stringToJSON = require('../index');
 const expected = fs.readFileSync('./expected.txt','UTF-8');
 
 const files = [
-	// './string-with-spaces.txt',
-	'./string-with-tabs.txt',
+	'./string-with-spaces.txt',
+	// './string-with-tabs.txt',
 	// './string-with-tabs-extra-newlines.txt',
 ];
 
