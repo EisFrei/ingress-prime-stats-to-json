@@ -32,15 +32,17 @@ function tempTimeSpan(str) {
 }
 
 function hackyEncode(str) {
-	return str
-		.replace('Discoverie: Kinetic Capsules', 'Discovery: Kinetic Capsules')
-		.replace('Discoverie: Machina Reclaims', 'Discovery: Machina Reclaims');
+	keys.slice(0).sort((a, b) =>  b.length - a.length)
+		.forEach((key, index) => str = str.replace(key, `-item-${index}-`));
+	console.log('encoded', str);
+	return str;
 }
 
 function hackyDecode(str) {
-	return str
-		.replace('Discovery: Kinetic Capsules', 'Discoverie: Kinetic Capsules')
-		.replace('Discovery: Machina Reclaims', 'Discoverie: Machina Reclaims');
+	keys.slice(0).sort((a, b) => b.length - a.length)
+		.forEach((key, index) => str = str.replace(`-item-${index}-`, key));
+	console.log('decoded', str);
+		return str;
 }
 
 /*
@@ -75,16 +77,17 @@ module.exports = function stringToJSON(str) {
 		let keyIdx = 0;
 
 		keys.forEach((key) => {
-			const keyPosition = headerLine.indexOf(key);
+			const encodedKey = hackyEncode(key);
+			const keyPosition = headerLine.indexOf(encodedKey);
 			if (keyPosition > 0) {
-				throw new Error(`Key "${key}" at position ${keyPosition} should be missing or at beginning. Maybe an unknown key was added?\n${headerLine}`);
+				throw new Error(`Key "${key}" "${encodedKey}" at position ${keyPosition} should be missing or at beginning. Maybe an unknown key was added?\n${headerLine}`);
 			}
 			if (keyPosition === 0) { // key is at start. best case. no values needed to skip
 				obj[hackyDecode(key)] = values[keyIdx++];
 			} else if (keyPosition === -1) { // key was not found. agent might be missing this stat
 				obj[hackyDecode(key)] = 0;
 			}
-			headerLine = trim(headerLine.replace(key, ''));
+			headerLine = trim(headerLine.replace(encodedKey, ''));
 		});
 	}
 	requiredKeys.forEach((key) => {
