@@ -1,6 +1,6 @@
 {
   "name": "ingress-prime-stats-to-json",
-  "version": "0.2.22",
+  "version": "0.2.23",
   "description": "Takes the stats TSV string copied from Ingress Prime and converts it to JSON. Can handle tabs replaced by spaces, throws an exception if an unknown key is found.",
   "main": "index.js",
   "directories": {
@@ -23,9 +23,9 @@
     "json"
   ],
   "author": {
-    "name":"Martin Freisen",
-    "email":"martin.freisen@gmail.com",
-    "url":"https://github.com/EisFrei/"
+    "name": "Martin Freisen",
+    "email": "martin.freisen@gmail.com",
+    "url": "https://github.com/EisFrei/"
   },
   "license": "MIT",
   "bugs": {
